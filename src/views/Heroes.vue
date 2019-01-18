@@ -35,7 +35,6 @@ export default class Heroes extends Vue {
 
 <style scoped>
 /* HeroesComponent's private CSS styles */
-/* HeroesComponent's private CSS styles */
 .heroes {
   margin: 0 0 2em 0;
   list-style-type: none;

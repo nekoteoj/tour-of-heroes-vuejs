@@ -26,6 +26,10 @@ export default class App extends Vue {
 }
 </script>
 
+<style>
+@import './styles.css';
+</style>
+
 <style scoped>
 /* AppComponent's private CSS styles */
 h1 {
@@ -56,8 +60,4 @@ nav a:hover {
 nav a.active {
   color: #039be5;
 }
-</style>
-
-<style>
-@import './styles.css';
 </style>

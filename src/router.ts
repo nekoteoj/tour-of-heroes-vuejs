@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Heroes from './views/Heroes.vue';
 import Dashboard from './views/Dashboard.vue';
-import HeroDetail from './components/HeroDetail.vue';
+import HeroDetail from './views/HeroDetail.vue';
 
 Vue.use(Router);
 

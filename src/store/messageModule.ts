@@ -22,6 +22,11 @@ export const messageModule: Module<MessageState, {}> = {
     },
   },
   getters: {
-
+    messages: (state): string[] => {
+      return state.messages;
+    },
+    messagesCount: (_, getters): number => {
+      return getters.messages.length;
+    },
   },
 };

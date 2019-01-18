@@ -1,18 +1,21 @@
 <template>
-  <div v-if="$store.state.messageModule.messages.length">
+  <div v-if="messagesCount">
 
     <h2>Messages</h2>
     <button class="clear"
             @click="$store.dispatch('clear')">clear</button>
-    <div v-for="(message, index) in $store.state.messageModule.messages" :key="index"> {{message}} </div>
+    <div v-for="(message, index) in messages" :key="index"> {{message}} </div>
 
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { mapGetters } from 'vuex';
 
-@Component
+@Component({
+  computed: mapGetters(['messages', 'messagesCount']),
+})
 export default class Messages extends Vue {
 }
 </script>

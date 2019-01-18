@@ -19,7 +19,7 @@ import { heroApi } from '@/models/heroApi';
 @Component
 export default class HeroDetail extends Vue {
   @Prop(String) private id!: string;
-  private hero = {
+  private hero: Hero = {
     id: -1,
     name: '',
   };
