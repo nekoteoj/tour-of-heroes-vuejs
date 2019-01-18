@@ -6,13 +6,19 @@
     </div>
     <router-view/> -->
     <h1>{{title}}</h1>
+    <Heroes />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Heroes from '@/components/Heroes.vue';
 
-@Component
+@Component({
+  components: {
+    Heroes,
+  },
+})
 export default class App extends Vue {
   private title = 'Tour of Heroes';
 }
