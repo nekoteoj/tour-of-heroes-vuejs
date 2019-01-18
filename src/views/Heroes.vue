@@ -3,15 +3,13 @@
     <h2>My Heroes</h2>
 
     <ul class="heroes">
-      <li v-for="hero in heroes"
-        :key="hero.id"
-        :class="{ selected: hero === selectedHero }"
-        @click="onSelect(hero)">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
+      <li v-for="hero in heroes" :key="hero.id">
+        <router-link :to="`/detail/${hero.id}`">
+          <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </router-link>
       </li>
     </ul>
 
-    <HeroDetail :hero="selectedHero" />
   </div>
 </template>
 
@@ -19,26 +17,13 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Hero } from '@/models/hero';
 import { heroApi } from '@/models/heroApi';
-import HeroDetail from './HeroDetail.vue';
 
-@Component({
-  components: {
-    HeroDetail,
-  },
-})
+@Component
 export default class Heroes extends Vue {
   private heroes: Hero[] = [];
-  private selectedHero: Hero = {
-    id: -1,
-    name: '',
-  };
 
   protected created(): void {
     this.getHeroes();
-  }
-
-  private onSelect(hero: Hero): void {
-    this.selectedHero = hero;
   }
 
   private getHeroes(): void {
@@ -50,10 +35,7 @@ export default class Heroes extends Vue {
 
 <style scoped>
 /* HeroesComponent's private CSS styles */
-.selected {
-  background-color: #CFD8DC !important;
-  color: white;
-}
+/* HeroesComponent's private CSS styles */
 .heroes {
   margin: 0 0 2em 0;
   list-style-type: none;
@@ -61,28 +43,33 @@ export default class Heroes extends Vue {
   width: 15em;
 }
 .heroes li {
-  cursor: pointer;
   position: relative;
-  left: 0;
+  cursor: pointer;
   background-color: #EEE;
   margin: .5em;
   padding: .3em 0;
   height: 1.6em;
   border-radius: 4px;
 }
-.heroes li.selected:hover {
-  background-color: #BBD8DC !important;
-  color: white;
-}
+
 .heroes li:hover {
   color: #607D8B;
   background-color: #DDD;
   left: .1em;
 }
-.heroes .text {
+
+.heroes a {
+  color: #888;
+  text-decoration: none;
   position: relative;
-  top: -3px;
+  display: block;
+  width: 250px;
 }
+
+.heroes a:hover {
+  color:#607D8B;
+}
+
 .heroes .badge {
   display: inline-block;
   font-size: small;
@@ -94,6 +81,8 @@ export default class Heroes extends Vue {
   left: -1px;
   top: -4px;
   height: 1.8em;
+  min-width: 16px;
+  text-align: right;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
