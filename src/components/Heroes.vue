@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>My Heroes</h2>
+
     <ul class="heroes">
       <li v-for="hero in heroes"
         :key="hero.id"
@@ -9,16 +10,8 @@
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-
-    <div v-if="selectedHero.id != -1">
-      <h2>{{selectedHero.name.toUpperCase()}} Details</h2>
-      <div><span>id: </span>{{selectedHero.id}}</div>
-      <div>
-        <label>name:
-          <input v-model="selectedHero.name" placeholder="name">
-        </label>
-      </div>
-    </div>
+    
+    <HeroDetail :hero="selectedHero" />
   </div>
 </template>
 
@@ -26,8 +19,13 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Hero } from '@/models/hero';
 import { HEROES } from '@/models/mock-heroes';
+import HeroDetail from './HeroDetail.vue';
 
-@Component
+@Component({
+  components: {
+    HeroDetail,
+  },
+})
 export default class Heroes extends Vue {
   private heroes = HEROES;
   private selectedHero: Hero = {
