@@ -10,7 +10,7 @@
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
     </ul>
-    
+
     <HeroDetail :hero="selectedHero" />
   </div>
 </template>
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Hero } from '@/models/hero';
-import { HEROES } from '@/models/mock-heroes';
+import { heroApi } from '@/models/heroApi';
 import HeroDetail from './HeroDetail.vue';
 
 @Component({
@@ -27,14 +27,23 @@ import HeroDetail from './HeroDetail.vue';
   },
 })
 export default class Heroes extends Vue {
-  private heroes = HEROES;
+  private heroes: Hero[] = [];
   private selectedHero: Hero = {
     id: -1,
     name: '',
   };
 
+  protected created(): void {
+    this.getHeroes();
+  }
+
   private onSelect(hero: Hero): void {
     this.selectedHero = hero;
+  }
+
+  private getHeroes(): void {
+    heroApi.getHeroes()
+      .then((heroes) => this.heroes = heroes);
   }
 }
 </script>
