@@ -1,4 +1,4 @@
-# tour-of-heroes
+# Angular's Tour of Heroes with Vue.js + Vuex + Typescript
 
 ## Project setup
 ```
